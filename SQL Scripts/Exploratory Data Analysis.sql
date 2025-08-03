@@ -1,7 +1,8 @@
 ## Exploratory Data Analysis
 
 ## Looking into per prefecture
-SELECT prefectures_2020 as prefecture,
+## We used substring to remove the codes before the prefecture
+SELECT SUBSTRING(prefectures_2020, 4) as prefecture,
 sum(population_total) as pop_total, 
 sum(population_in_2015) as pop_in_2015,
 sum(population_change) as pop_change, 
@@ -16,7 +17,7 @@ FROM data_staging2
 GROUP BY prefectures_2020
 ORDER BY pop_density_perkm2 DESC;
 
-SELECT prefectures_2020 as prefecture,
+SELECT SUBSTRING(prefectures_2020, 4) as prefecture,
 sum(population_total) as pop_total, 
 sum(population_in_2015) as pop_in_2015,
 sum(population_change) as pop_change, 
@@ -25,10 +26,10 @@ sum(area_km2) as area_km2,
 sum(population_total)/sum(area_km2) as pop_density_perkm2
 FROM data_staging2
 GROUP BY prefectures_2020
-ORDER BY pop_density_perkm2 ASC
+ORDER BY pop_density_perkm2 DESC
 LIMIT 10;
 
 ## Looking at Data for all of Japan
-SELECT population_total, population_male, population_female, population_change_percentage, num_of_households, num_of_households_change_percent
+SELECT SUBSTRING(prefectures_2020, 4) as prefecture,population_total, population_male, population_female, population_change_percentage, num_of_households, num_of_households_change_percent
 FROM data_staging2
 WHERE area_codes_2000 = 0;
