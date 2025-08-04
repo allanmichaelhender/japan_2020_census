@@ -30,6 +30,6 @@ ORDER BY pop_density_perkm2 DESC
 LIMIT 10;
 
 ## Looking at Data for all of Japan
-SELECT SUBSTRING(prefectures_2020, 4) as prefecture,population_total, population_male, population_female, population_change_percentage, num_of_households, num_of_households_change_percent
+SELECT SUBSTRING(prefectures_2020, 4) as prefecture,population_total, population_male, population_female, population_change_percentage/100 as pop_change_percent, num_of_households, num_of_households_change_percent/100 as num_households_change_per
 FROM data_staging2
 WHERE area_codes_2000 = 0;
